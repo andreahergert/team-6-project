@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="assets/CSS/style.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet" />
+    <title>Food at Full Tilt</title>
+</head>
+<main>
+    <!-- Background Image Banner -->
+    <figure class="hero" role="img" alt="tasty food"></figure>
+<div class="translucent-form-overlay">
+    <form>
+        <h1>FOOD AT FULL TILT</h1>
+        <h2>Search for Street Food</h2>
+        <div class="row columns">
+            <label>Keyword
+                <input type="text" name="keyword" placeholder="Any">
+            </label>
+        </div>
+        <div class="row columns">
+            <label>Pickup Style
+                <select name="status" type="text">
+                    <option>Any</option>
+                    <option value="food-truck">Food Truck</option>
+                    <option value="food-stall">Food Stall</option>
+                </select>
+            </label>
+        </div>
+        <div class="row columns">
+            <label>Type of Cuisine
+                <select name="status" type="text">
+                    <!-- populate later with type of cuisine -->
+                    <option>Any</option>
+                    <option value="office">Office</option>
+                    <option value="building">Building</option>
+                </select>
+            </label>
+        </div>
+        <div class="row columns">
+            <label>Accepted Payment Method
+                <select name="status" type="text">
+                    <option value="cash">Cash</option>
+                    <option value="credit-card">Credit Card</option>
+                    <option value="debit-card">Debit Card</option>
+                    <option value="apple-pay">Apple Pay</option>
+                </select>
+            </label>
+        </div>
+        <div class="row columns">
+            <label>Location
+                <input type="text" name="location" placeholder="Any">
+            </label>
+        </div>
+        <div class="row">
+            <label class="columns small-12">Price</label>
+            <div class="columns small-6">
+                <input type="number" min="0" name="min" placeholder="Min">
+            </div>
+            <div class="columns small-6">
+                <input type="number" min="0" name="max" placeholder="Max">
+            </div>
+        </div>
+        <button type="button" class="primary button expanded search-button">
+            Search
+        </button>
+        <div class="row columns">
+            Google Maps Goes Here
+
+        </div>
+    </form>
+</div>
+</main>
+</html>
