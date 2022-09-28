@@ -1,18 +1,19 @@
 const chompApiKey = "AzqJOGTI8G5NJ2uIY"
 var spoonApiKey = "6bd62a9ff28a42a08d35b2fccec9fd9e"
+
 // this function is for the random button
 function spoonacularRandom() {
-    fetch("https://api.spoonacular.com/recipes/random?apiKey=" + spoonApiKey)
+     fetch("https://api.spoonacular.com/recipes/random?apiKey=" + spoonApiKey)
         .then(function (response) {
             return response.json();
         })
         .then(function (data) {
+           
             // localStorage.setItem works here too
-            for (i=0; i<=data.recipes[0].extendedIngredients.length; i++){
-                let ingredients = data. recipe[0].extendedIngredients[i].name
-                 $(".extendedIngredients").text(ingredients);
-                console.log(data.extendedIngredients[i].name)
-            };
+            for (i=0; i<=data.recipes[0].extendedIngredients[i].name; i++){
+            //   $(".extendedIngredients").text(data.recipes[0].extendedIngredients[i].name)
+            console.log(data.recipes[0].extendedIngredients[i])
+            }
 
             $("#title").text(JSON.stringify(data.recipes[0].title))
 
@@ -22,23 +23,34 @@ function spoonacularRandom() {
 
             $("#readyInMinutes").text("Prep Time: " + (JSON.stringify(data.recipes[0].readyInMinutes)) + " minutes");
             
-            
-           
-            
+                 //vegetarian as well 
+            if (data.recipes[0].glutenFree || data.recipes[0].vegan)  {
+                $("#diets").text("Diets: Gluten Free, Vegan")
+            }
+            else if(data.recipes[0].glutenFree == "true" || data.recipes[0].vegan == "false"){
+                $("#diets").text("Diets: Gluten Free")
+            }
+            else if(data.recipes[0].glutenFree == "false"|| data.recipes[0].vegan == "true"){
+                $("#diets").text("Diets: Vegan")
+            }
+            // else if(data.recipes[0].glutenFree === false || data.recipes[0].vegan === true){
+            //     $("#diets").text("Diets: Gluten Free, Vegetarian")
+            // }
+           else{
+            $("#diets").text("Not vegan, gluten free, or vegetarian")
+           };
 
-           $("#diets").text("diets: " + (JSON.stringify(data.recipes[0].diets)));
-           
-           $("#vegetarian").text("Vegetarian friendly: " + (JSON.stringify(data.recipes[0].vegetarian)));
+           $("#cuisine").text("Cuisine-Type: " + data.recipes[0].cuisine);
            
 
-           $("#instructions").text(("Instructions: " + JSON.stringify(data.recipes[0].instructions)))
+           $("#instructions").text(("Instructions: " + JSON.stringify(data.recipes[0].analyzedInstructions)))
 
            $("#creditsText").text("Credit goes to: " + (JSON.stringify(data.recipes[0].creditsText)));
             
-            
-
+            console.log(data.recipes[0])
         });
-};
+    };
+
 
 //on click selects random
 $("#randomBtn").on("click", spoonacularRandom)
