@@ -16,7 +16,7 @@ function spoonacularRandom() {
                 "src", data.recipes[0].image,
                 "alt", "image of" + data.recipes[0].title
                 );
-
+            //dish types
             for (var i=0; i<data.recipes[0].dishTypes.length; i++){
                 let dishKind = data.recipes[0].dishTypes[i];
                  $("#dishTypes").append("<li>" + dishKind + "</li>");    
@@ -32,10 +32,7 @@ function spoonacularRandom() {
             for (var i=0; i<=data.recipes[0].extendedIngredients.length; i++) {
                 let ingredients = data.recipes[0].extendedIngredients[i].name;                $("#extendedIngredients").append("<li>" + ingredients + "</li>");
                 console.log(data.recipes[0]);
-            };
-
-            
-            
+            };            
             $("#vegan").text("Vegan: " + data.recipes[0].vegan);
             $("#vegetarian").append("Vegetarian: " + data.recipes[0].vegetarian);
             $("#glutenFree").text("Gluten Free: " + data.recipes[0].glutenFree);
