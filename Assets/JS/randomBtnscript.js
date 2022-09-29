@@ -12,7 +12,7 @@ function spoonacularRandom() {
             // localStorage.setItem works here too
             for (i=0; i<=data.recipes[0].extendedIngredients[i].name; i++){
             //   $(".extendedIngredients").text(data.recipes[0].extendedIngredients[i].name)
-            console.log(data.recipes[0].extendedIngredients[i])
+            console.log(data.recipes[0].extendedIngredients[i].name.val())
             }
 
             $("#title").text(JSON.stringify(data.recipes[0].title))
