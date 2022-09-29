@@ -49,17 +49,6 @@ function spoonacularRandom() {
 //on click selects random
 $("#randomBtn").on("click", spoonacularRandom)
 
-
-// data.image
-// let healthScore = data.healthScore.val()???or no val()
-// let glutenFree = data.glutenFree
-
-// let cookTime = data.readyInMinutes
-// let credit = data.creditsText
-// let title = data.title
-// let vegetarian = data.vegetarian
-
-
 // <div id="container">
 // <div id="title"></div>
 //     <img id="samplePic">
@@ -102,9 +91,7 @@ function userSearch(){
 //need to add const name = userInput
 // const spoonSearchIngredient = `https://api.spoonacular.com/recipes/findByIngredients?ingredients=${userIngredient}`
 
-// function spoonSearch(){
+//on click - searches based on user input
+$("#searchBtn").on("click", userSearch);
 
-
-$("#searchBtn").on("click", test);
-
-assets/js/randombtnscript.js
+// assets/js/randombtnscript.js
