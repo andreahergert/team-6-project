@@ -13,64 +13,27 @@
 <main>
     <!-- Background Image Banner -->
     <figure class="hero" role="img" alt="tasty food"></figure>
-    <div class="translucent-form-overlay">
+     <div class="translucent-form-overlay">
+        <img src="assets\pancake pic.jfif" alt="stack of fluffy pancakes">
         <form>
-            <h1>FOOD AT FULL TILT</h1>
-            <h2>Search for Street Food</h2>
+            <h1>Recipe Randomizer</h1>
+            <h3>"The food is so frozen... it still sings let it go!" - Gordon Ramsey</h3>
             <div class="row columns">
-                <label>Keyword
+                <label>Have It Your Way
                     <input type="text" name="keyword" placeholder="Any">
                 </label>
             </div>
-            <div class="row columns">
-                <label>Pickup Style
-                    <select name="status" type="text">
-                        <option>Any</option>
-                        <option value="food-truck">Food Truck</option>
-                        <option value="food-stall">Food Stall</option>
-                    </select>
-                </label>
-            </div>
-            <div class="row columns">
-                <label>Type of Cuisine
-                    <select name="status" type="text">
-                        <!-- populate later with type of cuisine -->
-                        <option>Any</option>
-                        <option value="office">Office</option>
-                        <option value="building">Building</option>
-                    </select>
-                </label>
-            </div>
-            <div class="row columns">
-                <label>Accepted Payment Method
-                    <select name="status" type="text">
-                        <option value="cash">Cash</option>
-                        <option value="credit-card">Credit Card</option>
-                        <option value="debit-card">Debit Card</option>
-                        <option value="apple-pay">Apple Pay</option>
-                    </select>
-                </label>
-            </div>
-            <div class="row columns">
-                <label>Location
-                    <input type="text" name="location" placeholder="Any">
-                </label>
-            </div>
-            <div class="row">
-                <label class="columns small-12">Price</label>
-                <div class="columns small-6">
-                    <input type="number" min="0" name="min" placeholder="Min">
-                </div>
-                <div class="columns small-6">
-                    <input type="number" min="0" name="max" placeholder="Max">
-                </div>
-            </div>
-            <button type="button" class="primary button expanded search-button">
-                Search
-            </button>
-                <div class="row columns">
-                Google Maps Goes Here
-            </div>
+            <form id="sBtn"> 
+                <input type="search" id="sBtn" name="search"
+                placeholder="Search...">
+                <button>SEARCH</button>
+            </form>
+            
+                
+            
+            
+              
+           
         </form>
      <!-- chris added the below for searching random -->
      <div id="container">
