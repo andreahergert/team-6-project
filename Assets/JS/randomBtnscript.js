@@ -8,44 +8,41 @@ function spoonacularRandom() {
             return response.json();
         })
         .then(function (data) {
-           
+           //changing text into results of random search
             // localStorage.setItem works here too
-            for (i=0; i<=data.recipes[0].extendedIngredients[i].name; i++){
-            //   $(".extendedIngredients").text(data.recipes[0].extendedIngredients[i].name)
-            console.log(data.recipes[0].extendedIngredients[i].name.val())
-            }
-
-            $("#title").text(JSON.stringify(data.recipes[0].title))
+            $("#title").text(JSON.stringify(data.recipes[0].title));
 
             $("#samplePic").attr(
                 "src", data.recipes[0].image,
-                "alt", "image of" + data.recipes[0].title)
+                "alt", "image of" + data.recipes[0].title
+                );
 
+            for (var i=0; i<data.recipes[0].dishTypes.length; i++){
+                let dishKind = data.recipes[0].dishTypes[i];
+                 $("#dishTypes").append("<li>" + dishKind + "</li>");    
+            }
             $("#readyInMinutes").text("Prep Time: " + (JSON.stringify(data.recipes[0].readyInMinutes)) + " minutes");
+            $("#vegan").text("Vegan: " + data.recipes[0].vegan);
+            $("#vegetarian").append("Vegetarian: " + data.recipes[0].vegetarian);
+            $("#glutenFree").text("Gluten Free: " + data.recipes[0].glutenFree);
+            $("#dairyFree").text("Dairy Free: " + data.recipes[0].dairyFree); 
+            $("#creditsText").text("Credit goes to: " + data.recipes[0].creditsText);
+
+            //ingredients list appended on page
+            for (var i=0; i<=data.recipes[0].extendedIngredients.length; i++) {
+                let ingredients = data.recipes[0].extendedIngredients[i].name;                $("#extendedIngredients").append("<li>" + ingredients + "</li>");
+                console.log(data.recipes[0]);
+            };
+
             
-                 //vegetarian as well 
-            if (data.recipes[0].glutenFree || data.recipes[0].vegan)  {
-                $("#diets").text("Diets: Gluten Free, Vegan")
-            }
-            else if(data.recipes[0].glutenFree == "true" || data.recipes[0].vegan == "false"){
-                $("#diets").text("Diets: Gluten Free")
-            }
-            else if(data.recipes[0].glutenFree == "false"|| data.recipes[0].vegan == "true"){
-                $("#diets").text("Diets: Vegan")
-            }
-            // else if(data.recipes[0].glutenFree === false || data.recipes[0].vegan === true){
-            //     $("#diets").text("Diets: Gluten Free, Vegetarian")
-            // }
-           else{
-            $("#diets").text("Not vegan, gluten free, or vegetarian")
-           };
-
-           $("#cuisine").text("Cuisine-Type: " + data.recipes[0].cuisine);
-           
-
-           $("#instructions").text(("Instructions: " + JSON.stringify(data.recipes[0].analyzedInstructions)))
-
-           $("#creditsText").text("Credit goes to: " + (JSON.stringify(data.recipes[0].creditsText)));
+            
+            $("#vegan").text("Vegan: " + data.recipes[0].vegan);
+            $("#vegetarian").append("Vegetarian: " + data.recipes[0].vegetarian);
+            $("#glutenFree").text("Gluten Free: " + data.recipes[0].glutenFree);
+            $("#dairyFree").text("Dairy Free: " + data.recipes[0].dairyFree);
+            $("#cuisine").text("Cuisine-Type: " + data.recipes[0].cuisine);
+            $("#creditsText").text("Credit goes to: " + (JSON.stringify(data.recipes[0].creditsText)));
+        //    $("#instructions").text(("Instructions: " + JSON.stringify(data.recipes[0].analyzedInstructions)))
             
             console.log(data.recipes[0])
         });
