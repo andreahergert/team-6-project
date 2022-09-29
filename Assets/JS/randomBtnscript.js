@@ -1,5 +1,5 @@
 const chompApiKey = "AzqJOGTI8G5NJ2uIY"
-var spoonApiKey = "6bd62a9ff28a42a08d35b2fccec9fd9e"
+const spoonApiKey = "6bd62a9ff28a42a08d35b2fccec9fd9e"
 
 // this function is for the random button
 function spoonacularRandom() {
