@@ -63,9 +63,6 @@ $("#randomBtn").on("click", spoonacularRandom)
 // </div>
 
 
-
-
-
 //src button
 
 function userSearch(){
@@ -80,10 +77,21 @@ function userSearch(){
         for(var i=0; i<data.results.length; i++) {
            
             let userResults = data.results[i]
-            
-            console.log(userResults)  
-            
+            let recipeId = userResults.id
+            let imgId = $("#image").attr(
+                "src", "https://spoonacular.com/recipeImages/" + recipeId + "-312x231.jpg",
+                "alt", "Food Picture"
+            )
+            console.log(userResults)
+            $("#searchBtn").append("<h3>" + userResults.title + "</h3>" + imgId)
+
+            $("#options").append("<h4>" + "Prep Time: " + userResults.readyInMinutes + " minutes" + "</h4>" + "<p>" + "Gluten Free: " + userResults.glutenFree + "<br>" + "Vegan: " + userResults.vegan + "<br>" +  "Vegetarian: " + userResults.vegetarian + "<br>" + "Dairy Free: " + userResults.dairyFree + "</p>" + "<br>" + "Source: " + "<a>" + userResults.spoonacularSourceUrl + "</a>");
         }
+            for (var i=0; i<=userResults.extendedIngredients.length; i++) {
+                let ingredients = userResults.extendedIngredients[i].name;                
+                $("#placeholder").append("<li>" + ingredients + "</li>")
+            
+            }
 
     });
 };
