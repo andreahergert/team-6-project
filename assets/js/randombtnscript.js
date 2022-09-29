@@ -105,4 +105,6 @@ function userSearch(){
 // function spoonSearch(){
 
 
-$("#searchBtn").on("click", userSearch);
+$("#searchBtn").on("click", test);
+
+assets/js/randombtnscript.js
