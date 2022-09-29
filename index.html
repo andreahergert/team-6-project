@@ -18,17 +18,16 @@
         <form>
             <h1>Recipe Randomizer</h1>
             <h3>"The food is so frozen... it still sings let it go!" - Gordon Ramsey</h3>
-            <div class="row columns">
+            <!-- <div class="row columns">
                 <label>Have It Your Way
                     <input type="text" name="keyword" placeholder="Any">
                 </label>
-            </div>
-            <form id="sBtn"> 
+            </div> -->
+            <form id="search-container"> 
                 <input type="search" id="sBtn" name="search"
                 placeholder="Search...">
-                <button>SEARCH</button>
             </form>
-            
+            <button id="searchBtn">SEARCH</button>
                 
             
             
@@ -47,9 +46,7 @@
         <p id="vegan"></p>
         <p id="vegetarian"></p>
         <p id="glutenFree"></p>
-        
         <p id="dairyFree"></p>
-        
         <p id="creditsText"></p>
     </div>
     <button id="randomBtn">RANDOM</button>  
@@ -64,6 +61,7 @@
 <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.7.5/dist/js/foundation.min.js" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="assets/js/randomBtnscript.js"></script>
+<script src="assets/js/searchBtnscript.js"></script>
 <!-- Google places api linked here based on api documentation recommendation.  Important to keep the async in this too. -->
 <script async
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBfSefihQM4zo6TcMyTkrd4rcGIKFtcdFQ&libraries=places&callback=initGoogle">
