@@ -73,27 +73,36 @@ function userSearch(){
         return response.json()
     })
     .then(function (data) {
+        console.log(data)
+        console.log(data.results.length)
         for(var i=0; i<=data.results.length; i++) {
-            // let searchResults = Math.floor(Math.random()*data.results.length);
-           
-        
+        //     // let searchResults = Math.floor(Math.random()*data.results.length);
             let userResults = data.results[i];
-            let recipeId = userResults.id;
-            let imgId = $("#image").attr(
-                "src", "https://spoonacular.com/recipeImages/" + recipeId + "-312x231.jpg",
-                "alt", "Food Picture"
-            );
+        //     let recipeId = userResults.id;
+        //     let imgId = $("#image").attr(
+        //         "src", "https://spoonacular.com/recipeImages/" + recipeId + "-312x231.jpg",
+        //         "alt", "Food Picture"
+        //     );  
+         $("#test").append("<h3>" + userResults.title + "</h3>" + "<br>" + "<h4>" + "Prep Time: " + userResults.readyInMinutes + " minutes" + "</h4>" + "<p>" + "Gluten Free: " + userResults.glutenFree + "<br>" + "Vegan: " + userResults.vegan + "<br>" +  "Vegetarian: " + userResults.vegetarian + "<br>" + "Dairy Free: " + userResults.dairyFree + "</p>" + "<br>" + "Source: " + "<a>" + userResults.spoonacularSourceUrl + "</a>")
+               
         
-            console.log(userResults);
-            
+            for(var a = 0; a <=userResults.analyzedInstructions[0].steps.length; a++){
+                let instructions = userResults.analyzedInstructions[0].steps[a].step;
+                  console.log(instructions);
+                
 
-            $("#searchBtn").append("<img src="+ imgId + ">" + "<h3>" + userResults.title + "</h3>" + "<br>" + "<h4>" + "Prep Time: " + userResults.readyInMinutes + " minutes" + "</h4>" + "<p>" + "Gluten Free: " + userResults.glutenFree + "<br>" + "Vegan: " + userResults.vegan + "<br>" +  "Vegetarian: " + userResults.vegetarian + "<br>" + "Dairy Free: " + userResults.dairyFree + "</p>" + "<br>" + "Source: " + "<a>" + userResults.spoonacularSourceUrl + "</a>");
-        }
-            for (var i=0; i<=userResults.extendedIngredients.length; i++) {
-                let ingredients = userResults.extendedIngredients[i].name;                
-                $("#placeholder").append("<li>" + ingredients + "</li>")
+            $("#instructions").append
+            ("<li>" + "Instructions: " + instructions + "</li>")
+            };
+              }; 
+              
+             
+        // }
+        //     for (var i=0; i<=userResults.extendedIngredients.length; i++) {
+        //         let ingredients = userResults.extendedIngredients[i].name;                
+        //         $("#placeholder").append("<li>" + ingredients + "</li>")
             
-            }
+            
         });
     };
 
