@@ -30,9 +30,9 @@ function spoonacularRandom() {
 
             //ingredients list appended on page
             for (var i=0; i<=data.recipes[0].extendedIngredients.length; i++) {
-                let ingredients = data.recipes[0].extendedIngredients[i].name;                $("#extendedIngredients").append("<li>" + ingredients + "</li>");
-                console.log(data.recipes[0]);
-            };            
+                let ingredients = data.recipes[0].extendedIngredients[i].name; 
+                $("#extendedIngredients").append("<li>" + ingredients + "</li>");
+                };            
             $("#vegan").text("Vegan: " + data.recipes[0].vegan);
             $("#vegetarian").append("Vegetarian: " + data.recipes[0].vegetarian);
             $("#glutenFree").text("Gluten Free: " + data.recipes[0].glutenFree);
@@ -63,30 +63,40 @@ $("#randomBtn").on("click", spoonacularRandom)
 // </div>
 
 
-
-
-
 //src button
 
 function userSearch(){
     let userInput = $("#sBtn").val();
 
-    fetch(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${spoonApiKey}&query=${userInput}&addRecipeInformation=true&per_page=10`) 
+    fetch(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${spoonApiKey}&query=${userInput}&addRecipeInformation=true&per_page=5`) 
     .then(function (response){
-        
         return response.json()
     })
     .then(function (data) {
-        for(var i=0; i<data.results.length; i++) {
+        for(var i=0; i<=data.results.length; i++) {
+            // let searchResults = Math.floor(Math.random()*data.results.length);
            
-            let userResults = data.results[i]
+        
+            let userResults = data.results[i];
+            let recipeId = userResults.id;
+            let imgId = $("#image").attr(
+                "src", "https://spoonacular.com/recipeImages/" + recipeId + "-312x231.jpg",
+                "alt", "Food Picture"
+            );
+        
+            console.log(userResults);
             
-            console.log(userResults)  
-            
-        }
 
-    });
-};
+            $("#searchBtn").append("<img src="+ imgId + ">" + "<h3>" + userResults.title + "</h3>" + "<br>" + "<h4>" + "Prep Time: " + userResults.readyInMinutes + " minutes" + "</h4>" + "<p>" + "Gluten Free: " + userResults.glutenFree + "<br>" + "Vegan: " + userResults.vegan + "<br>" +  "Vegetarian: " + userResults.vegetarian + "<br>" + "Dairy Free: " + userResults.dairyFree + "</p>" + "<br>" + "Source: " + "<a>" + userResults.spoonacularSourceUrl + "</a>");
+        }
+            for (var i=0; i<=userResults.extendedIngredients.length; i++) {
+                let ingredients = userResults.extendedIngredients[i].name;                
+                $("#placeholder").append("<li>" + ingredients + "</li>")
+            
+            }
+        });
+    };
+
 
 //need to add const name = userInput
 // const spoonSearchIngredient = `https://api.spoonacular.com/recipes/findByIngredients?ingredients=${userIngredient}`
