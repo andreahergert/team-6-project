@@ -1,6 +1,6 @@
 
 
-@meadia all and (display-mode: fullscreen) {
+@media all and (display-mode: fullscreen) {
     .main {
         padding: 0px;
     }
