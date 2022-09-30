@@ -74,26 +74,35 @@ function userSearch(){
     })
     .then(function (data) {
         for(var i=0; i<=data.results.length; i++) {
-            // let searchResults = Math.floor(Math.random()*data.results.length);
-           
-        
+        //     // let searchResults = Math.floor(Math.random()*data.results.length);
             let userResults = data.results[i];
-            let recipeId = userResults.id;
-            let imgId = $("#image").attr(
-                "src", "https://spoonacular.com/recipeImages/" + recipeId + "-312x231.jpg",
-                "alt", "Food Picture"
-            );
-        
-            console.log(userResults);
+        //     let recipeId = userResults.id;
+        //     let imgId = $("#image").attr(
+        //         "src", "https://spoonacular.com/recipeImages/" + recipeId + "-312x231.jpg",
+        //         "alt", "Food Picture"
+        //     );
+              console.log(userResults.analyzedInstructions[0])
             
+            for(var i = 0; i <=userResults.analyzedInstructions[0].steps.length; i++){
+                console.log(userResults.analyzedInstructions[i].steps[i].step)
+                for (var i=0;i<=userResults.analyzedInstructions[0].steps.length; i++){
+                    
+                };
+                
 
-            $("#searchBtn").append("<img src="+ imgId + ">" + "<h3>" + userResults.title + "</h3>" + "<br>" + "<h4>" + "Prep Time: " + userResults.readyInMinutes + " minutes" + "</h4>" + "<p>" + "Gluten Free: " + userResults.glutenFree + "<br>" + "Vegan: " + userResults.vegan + "<br>" +  "Vegetarian: " + userResults.vegetarian + "<br>" + "Dairy Free: " + userResults.dairyFree + "</p>" + "<br>" + "Source: " + "<a>" + userResults.spoonacularSourceUrl + "</a>");
-        }
-            for (var i=0; i<=userResults.extendedIngredients.length; i++) {
-                let ingredients = userResults.extendedIngredients[i].name;                
-                $("#placeholder").append("<li>" + ingredients + "</li>")
+            // $("#instructions").append(
+            //     "<li>" + userResults.analyzedInstructions[i].steps[i].step + "</li>")
+
+              }    
+            };    
+              // "<img src="+ imgId + ">" + "<h3>" + userResults.title + "</h3>" + "<br>" + "<h4>" + "Prep Time: " + userResults.readyInMinutes + " minutes" + "</h4>" + "<p>" + "Gluten Free: " + userResults.glutenFree + "<br>" + "Vegan: " + userResults.vegan + "<br>" +  "Vegetarian: " + userResults.vegetarian + "<br>" + "Dairy Free: " + userResults.dairyFree + "</p>" + "<br>" + "Source: " + "<a>" + userResults.spoonacularSourceUrl + "</a>"
+                // );
+        // }
+        //     for (var i=0; i<=userResults.extendedIngredients.length; i++) {
+        //         let ingredients = userResults.extendedIngredients[i].name;                
+        //         $("#placeholder").append("<li>" + ingredients + "</li>")
             
-            }
+            
         });
     };
 
