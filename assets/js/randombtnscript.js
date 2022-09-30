@@ -68,14 +68,15 @@ $("#randomBtn").on("click", spoonacularRandom)
 function userSearch(){
     let userInput = $("#sBtn").val();
 
-    fetch(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${spoonApiKey}&query=${userInput}&addRecipeInformation=true&per_page=10`) 
+    fetch(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${spoonApiKey}&query=${userInput}&addRecipeInformation=true&per_page=5`) 
     .then(function (response){
         return response.json()
     })
     .then(function (data) {
         for(var i=0; i<=data.results.length; i++) {
-            
-           console.log(data.results[i]);
+            // let searchResults = Math.floor(Math.random()*data.results.length);
+           
+        
             let userResults = data.results[i];
             let recipeId = userResults.id;
             let imgId = $("#image").attr(
@@ -86,7 +87,7 @@ function userSearch(){
             console.log(userResults);
             
 
-            $("#searchBtn").append("<h3>" + userResults.title + "</h3>" + imgId + "<h4>" + "Prep Time: " + userResults.readyInMinutes + " minutes" + "</h4>" + "<p>" + "Gluten Free: " + userResults.glutenFree + "<br>" + "Vegan: " + userResults.vegan + "<br>" +  "Vegetarian: " + userResults.vegetarian + "<br>" + "Dairy Free: " + userResults.dairyFree + "</p>" + "<br>" + "Source: " + "<a>" + userResults.spoonacularSourceUrl + "</a>");
+            $("#searchBtn").append("<img src="+ imgId + ">" + "<h3>" + userResults.title + "</h3>" + "<br>" + "<h4>" + "Prep Time: " + userResults.readyInMinutes + " minutes" + "</h4>" + "<p>" + "Gluten Free: " + userResults.glutenFree + "<br>" + "Vegan: " + userResults.vegan + "<br>" +  "Vegetarian: " + userResults.vegetarian + "<br>" + "Dairy Free: " + userResults.dairyFree + "</p>" + "<br>" + "Source: " + "<a>" + userResults.spoonacularSourceUrl + "</a>");
         }
             for (var i=0; i<=userResults.extendedIngredients.length; i++) {
                 let ingredients = userResults.extendedIngredients[i].name;                
