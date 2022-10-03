@@ -15,8 +15,7 @@ function spoonacularRandom() {
               } else {
                 count = 0;
               } 
-           //changing text into results of random search
-            // localStorage.setItem works here too
+           //changing text into results of random 
             $("#title").text(JSON.stringify(data.recipes[0].title));
 
             $("#samplePic").attr(
@@ -42,16 +41,15 @@ function spoonacularRandom() {
                 };
 
             //list of instructions
-            for (var q = 0; q <= data.recipes[0].analyzedInstructions[0].steps.length; a++){
-               console.log(data.recipes[0])
-            let instructions = data.recipes[0].analyzedInstructions[0].steps[q]
-           $("#instructionsRandom").append("<li>" + instructions + "</li>")
+            for (var q = 0; q <= data.recipes[0].analyzedInstructions[0].steps.length; q++){
+               console.log(data.recipes[0].analyzedInstructions[i])
+        //     let instructions = data.recipes[0].analyzedInstructions[0].steps[q]
+        //    $("#instructionsRandom").append("<li>" + instructions + "</li>")
            
             }
          
         });
-    
-    // function clearChoices() {
+      
         
     };
 
@@ -86,7 +84,7 @@ function userSearch(){
         return response.json()
     })
     .then(function (data) {
-        console.log(data)        
+                
         for(var i=0; i<=data.results.length; i++) {
             let userResults = data.results[i];
             let index = Math.floor(Math.random()* userResults.length)
@@ -96,8 +94,7 @@ function userSearch(){
                 "alt", "Food Picture"
             );  
 
-            
-         $("#test").append("<img src=" + imgId + ">" + "<br>" + "<h4>" + "Prep Time: " + userResults.readyInMinutes + " minutes" + "</h4>" + "<p>" + "Gluten Free: " + userResults.glutenFree + "<br>" + "Vegan: " + userResults.vegan + "<br>" +  "Vegetarian: " + userResults.vegetarian + "<br>" + "Dairy Free: " + userResults.dairyFree + "</p>" + "<br>" + "Source: " + "<a>" + userResults.spoonacularSourceUrl + "</a>")
+            $("#test").append("<h3>" + userResults.title + "<h3>" + "<img src=" + imgId + ">" + "<br>" + "<h4>" + "Prep Time: " + userResults.readyInMinutes + " minutes" + "</h4>" + "<p>" + "Gluten Free: " + userResults.glutenFree + "<br>" + "Vegan: " + userResults.vegan + "<br>" +  "Vegetarian: " + userResults.vegetarian + "<br>" + "Dairy Free: " + userResults.dairyFree + "</p>" + "<br>" + "Source: " + "<a>" + userResults.spoonacularSourceUrl + "</a>")
                
         
             for(var a = 0; a <=userResults.analyzedInstructions[0].steps.length; a++){
