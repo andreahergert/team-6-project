@@ -3,11 +3,18 @@ const spoonApiKey = "6bd62a9ff28a42a08d35b2fccec9fd9e"
 
 // this function is for the random button
 function spoonacularRandom() {
-     fetch("https://api.spoonacular.com/recipes/random?apiKey=" + spoonApiKey)
+     ;
+    fetch("https://api.spoonacular.com/recipes/random?apiKey=" + spoonApiKey)
         .then(function (response) {
             return response.json();
         })
         .then(function (data) {
+            let count = data.recipes[0].length
+            if (count < data.recipes[0].length) {
+                count++;
+              } else {
+                count = 0;
+              } 
            //changing text into results of random search
             // localStorage.setItem works here too
             $("#title").text(JSON.stringify(data.recipes[0].title));
@@ -23,31 +30,37 @@ function spoonacularRandom() {
             }
             $("#readyInMinutes").text("Prep Time: " + (JSON.stringify(data.recipes[0].readyInMinutes)) + " minutes");
             $("#vegan").text("Vegan: " + data.recipes[0].vegan);
-            $("#vegetarian").append("Vegetarian: " + data.recipes[0].vegetarian);
+            $("#vegetarian").text("Vegetarian: " + data.recipes[0].vegetarian);
             $("#glutenFree").text("Gluten Free: " + data.recipes[0].glutenFree);
             $("#dairyFree").text("Dairy Free: " + data.recipes[0].dairyFree); 
             $("#creditsText").text("Credit goes to: " + data.recipes[0].creditsText);
 
             //ingredients list appended on page
             for (var i=0; i<=data.recipes[0].extendedIngredients.length; i++) {
-                let ingredients = data.recipes[0].extendedIngredients[i].name; 
-                $("#extendedIngredients").append("<li>" + ingredients + "</li>");
-                };            
-            $("#vegan").text("Vegan: " + data.recipes[0].vegan);
-            $("#vegetarian").append("Vegetarian: " + data.recipes[0].vegetarian);
-            $("#glutenFree").text("Gluten Free: " + data.recipes[0].glutenFree);
-            $("#dairyFree").text("Dairy Free: " + data.recipes[0].dairyFree);
-            $("#cuisine").text("Cuisine-Type: " + data.recipes[0].cuisine);
-            $("#creditsText").text("Credit goes to: " + (JSON.stringify(data.recipes[0].creditsText)));
-        //    $("#instructions").text(("Instructions: " + JSON.stringify(data.recipes[0].analyzedInstructions)))
-            
-            console.log(data.recipes[0])
+                let ingredients = data.recipes[0].extendedIngredients[i].name
+                $("#extendedIngredients").append("<li>" + ingredients + "</li>")
+                };
+
+            //list of instructions
+            for (var q = 0; q <= data.recipes[0].analyzedInstructions[0].steps.length; a++){
+               console.log(data.recipes[0])
+            let instructions = data.recipes[0].analyzedInstructions[0].steps[q]
+           $("#instructionsRandom").append("<li>" + instructions + "</li>")
+           
+            }
+         
         });
+    
+    // function clearChoices() {
+        
     };
 
-
 //on click selects random
+
 $("#randomBtn").on("click", spoonacularRandom)
+// $("#randomBtn").on("dblclick", refreshPage)
+
+
 
 // <div id="container">
 // <div id="title"></div>
@@ -73,17 +86,18 @@ function userSearch(){
         return response.json()
     })
     .then(function (data) {
-        console.log(data)
-        console.log(data.results.length)
+        console.log(data)        
         for(var i=0; i<=data.results.length; i++) {
-        //     // let searchResults = Math.floor(Math.random()*data.results.length);
             let userResults = data.results[i];
-        //     let recipeId = userResults.id;
-        //     let imgId = $("#image").attr(
-        //         "src", "https://spoonacular.com/recipeImages/" + recipeId + "-312x231.jpg",
-        //         "alt", "Food Picture"
-        //     );  
-         $("#test").append("<h3>" + userResults.title + "</h3>" + "<br>" + "<h4>" + "Prep Time: " + userResults.readyInMinutes + " minutes" + "</h4>" + "<p>" + "Gluten Free: " + userResults.glutenFree + "<br>" + "Vegan: " + userResults.vegan + "<br>" +  "Vegetarian: " + userResults.vegetarian + "<br>" + "Dairy Free: " + userResults.dairyFree + "</p>" + "<br>" + "Source: " + "<a>" + userResults.spoonacularSourceUrl + "</a>")
+            let index = Math.floor(Math.random()* userResults.length)
+            let recipeId = userResults.id;
+            let imgId = $("#image").attr(
+                "src", "https://spoonacular.com/recipeImages/" + recipeId + "-312x231.jpg",
+                "alt", "Food Picture"
+            );  
+
+            
+         $("#test").append("<img src=" + imgId + ">" + "<br>" + "<h4>" + "Prep Time: " + userResults.readyInMinutes + " minutes" + "</h4>" + "<p>" + "Gluten Free: " + userResults.glutenFree + "<br>" + "Vegan: " + userResults.vegan + "<br>" +  "Vegetarian: " + userResults.vegetarian + "<br>" + "Dairy Free: " + userResults.dairyFree + "</p>" + "<br>" + "Source: " + "<a>" + userResults.spoonacularSourceUrl + "</a>")
                
         
             for(var a = 0; a <=userResults.analyzedInstructions[0].steps.length; a++){
@@ -92,7 +106,7 @@ function userSearch(){
                 
 
             $("#instructions").append
-            ("<li>" + "Instructions: " + instructions + "</li>")
+            ("<li>" + instructions + "</li>")
             };
               }; 
               
@@ -107,8 +121,7 @@ function userSearch(){
     };
 
 
-//need to add const name = userInput
-// const spoonSearchIngredient = `https://api.spoonacular.com/recipes/findByIngredients?ingredients=${userIngredient}`
+
 
 //on click - searches based on user input
 $("#searchBtn").on("click", userSearch);
